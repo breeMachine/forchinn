@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const clickButton = document.getElementById('clickButton');
+    const continueButton = document.getElementById('continueButton');
     const mainContent = document.getElementById('main-content');
     const options = document.getElementById('options');
-    const watchButton = document.getElementById('watchButton');
-    const noButton = document.getElementById('noButton');
+    const roarButton = document.getElementById('roarButton');
     const video = document.getElementById('video');
     const youtubeVideo = document.getElementById('youtubeVideo');
 
-    clickButton.addEventListener('click', function() {
+    // Set the YouTube video URL
+    youtubeVideo.src = 'https://youtu.be/kovS1JTrOYQ?si=x906f7f5czvFDqnK';
+
+    continueButton.addEventListener('click', function() {
         mainContent.classList.add('hidden');
         options.classList.remove('hidden');
         document.querySelectorAll('#options .animated-text').forEach((element, index) => {
@@ -15,13 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    watchButton.addEventListener('click', function() {
-        options.classList.add('hidden');
-        video.classList.remove('hidden');
-        youtubeVideo.src = "https://www.youtube.com/embed/your_video_id";
-    });
-
-    noButton.addEventListener('click', function() {
+    roarButton.addEventListener('click', function() {
         options.classList.add('hidden');
         mainContent.classList.remove('hidden');
     });
