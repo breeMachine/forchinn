@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     noButton.addEventListener('click', function() {
         options.classList.add('hidden');
-        alert('Oke, mungkin lain kali!');
+        mainContent.classList.remove('hidden');
     });
 
     document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
