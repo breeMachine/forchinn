@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const youtubeVideo = document.getElementById('youtubeVideo');
     const videoTitle = document.getElementById('videoTitle');
 
+    // Fungsi untuk menampilkan pesan error
+    function showError(message) {
+        console.error(message);
+        alert(message); // Ini contoh sederhana, bisa diganti dengan cara yang lebih elegan
+    }
+
     mainContent.addEventListener('click', function() {
         mainContent.classList.add('hidden');
         options.classList.remove('hidden');
@@ -44,7 +50,16 @@ document.addEventListener('DOMContentLoaded', function() {
             video.classList.remove('hidden');
             videoTitle.innerHTML = "Okeee ini dia.";
             videoTitle.classList.add('animated-text');
-            youtubeVideo.src = "https://youtu.be/kovS1JTrOYQ?si=l3RRV0JIp5wGoMrW";
+            // Mengatur video YouTube
+            const videoUrl = "https://www.youtube.com/embed/kovS1JTrOYQ";
+            if (youtubeVideo) {
+                youtubeVideo.src = videoUrl;
+                youtubeVideo.onerror = function() {
+                    showError("Gagal memuat video. Pastikan koneksi internet Anda stabil atau coba lagi nanti.");
+                };
+            } else {
+                showError("Elemen video tidak ditemukan.");
+            }
         }
         if (e.target && e.target.id == 'noVideoButton') {
             options.classList.add('hidden');
@@ -55,7 +70,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             video.classList.remove('hidden');
             videoTitle.classList.add('animated-text');
-            youtubeVideo.src = "https://youtu.be/kovS1JTrOYQ?si=l3RRV0JIp5wGoMrW";
+            // Mengatur video YouTube
+            const videoUrl = "https://www.youtube.com/embed/kovS1JTrOYQ";
+            if (youtubeVideo) {
+                youtubeVideo.src = videoUrl;
+                youtubeVideo.onerror = function() {
+                    showError("Gagal memuat video. Pastikan koneksi internet Anda stabil atau coba lagi nanti.");
+                };
+            } else {
+                showError("Elemen video tidak ditemukan.");
+            }
         }
     });
 
