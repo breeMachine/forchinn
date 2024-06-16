@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const continueButton = document.getElementById('continueButton');
     const mainContent = document.getElementById('main-content');
     const options = document.getElementById('options');
-    const roarButton = document.getElementById('roarButton');
+    const yesButton = document.getElementById('yesButton');
+    const rawrButton = document.getElementById('rawrButton');
     const video = document.getElementById('video');
     const youtubeVideo = document.getElementById('youtubeVideo');
+    const videoTitle = document.getElementById('videoTitle');
 
-    // Set the YouTube video URL
-    youtubeVideo.src = 'https://youtu.be/kovS1JTrOYQ?si=x906f7f5czvFDqnK';
-
-    continueButton.addEventListener('click', function() {
+    mainContent.addEventListener('click', function() {
         mainContent.classList.add('hidden');
         options.classList.remove('hidden');
         document.querySelectorAll('#options .animated-text').forEach((element, index) => {
@@ -17,12 +15,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    roarButton.addEventListener('click', function() {
+    rawrButton.addEventListener('click', function() {
         options.classList.add('hidden');
+        mainContent.innerHTML = `<h1 class="animated-text">Yaudin deh, aku mau kasih liat sesuatu ke kamu.</h1>
+            <button id="watchButton" class="animated-text">Apa tuh?</button>`;
         mainContent.classList.remove('hidden');
+        document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.2}s`;
+        });
     });
 
-    document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
-        element.style.animationDelay = `${index * 0.2}s`;
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id == 'watchButton') {
+            mainContent.classList.add('hidden');
+            options.innerHTML = `<p class="animated-text">Tenang, bukan hal yang cabul kok. Mau liat gak?</p>
+                <button id="yesVideoButton" class="animated-text">Mauuu</button>
+                <button id="noVideoButton" class="animated-text">Gak</button>`;
+            options.classList.remove('hidden');
+            document.querySelectorAll('#options .animated-text').forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.2}s`;
+            });
+        }
     });
+
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id == 'yesVideoButton') {
+            options.classList.add('hidden');
+            video.classList.remove('hidden');
+            videoTitle.innerHTML = "Okeee ini dia.";
+            videoTitle.classList.add('animated-text');
+            youtubeVideo.src = "https://youtu.be/kovS1JTrOYQ?si=l3RRV0JIp5wGoMrW";
+        }
+        if (e.target && e.target.id == 'noVideoButton') {
+            options.classList.add('hidden');
+            mainContent.innerHTML = `<h1 class="animated-text">Yah, mengsedih. Tapi tetep kupaksa kamu liat hehe.</h1>`;
+            mainContent.classList.remove('hidden');
+            document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.2}s`;
+            });
+            video.classList.remove('hidden');
+            videoTitle.classList.add('animated-text');
+            youtubeVideo.src = "https://youtu.be/kovS1JTrOYQ?si=l3RRV0JIp5wGoMrW";
+        }
+    });
+
 });
