@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Interaktif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #main {
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1 id="message">Klik disini</h1>
+    </div>
+    <script>
+        document.getElementById('message').onclick = function() {
+            let mainDiv = document.getElementById('main');
+            mainDiv.innerHTML = `
+                <h1>Pilih Opsi</h1>
+                <button id="watchVideo">Tonton Video</button>
+                <button id="noVideo">Tidak Tonton</button>
+            `;
+
+            document.getElementById('watchVideo').onclick = function() {
+                mainDiv.innerHTML = `
+                    <h1>Menonton Video</h1>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `;
+            }
+
+            document.getElementById('noVideo').onclick = function() {
+                mainDiv.innerHTML = `<h1>Anda Memilih Tidak Menonton Video</h1>`;
+            }
+        }
+    </script>
+</body>
+</html>
