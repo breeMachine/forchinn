@@ -50,11 +50,25 @@ button:hover {
     }
 }
 
-.video-border {
-    border: 15px solid #fff;
-    border-image: url('https://i.imgur.com/QKuaB1m.png') 30 round;
+.flower-border {
     padding: 10px;
     display: inline-block;
+    position: relative;
+}
+
+.flower-border::before {
+    content: '';
+    background-image: url('https://i.imgur.com/RyR1LqR.png'); /* URL gambar bunga */
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+    border: 15px solid transparent;
+    border-image: url('https://i.imgur.com/RyR1LqR.png') 30 round;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -63,3 +77,17 @@ button:hover {
         height: auto;
     }
 }
+
+body::after {
+    content: '';
+    background-image: url('https://i.imgur.com/IGt1X0m.png'); /* URL gambar bunga */
+    background-size: contain;
+    background-repeat: repeat;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+        }
