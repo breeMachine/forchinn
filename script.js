@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     clickButton.addEventListener('click', function() {
         mainContent.classList.add('hidden');
         options.classList.remove('hidden');
+        document.querySelectorAll('#options .animated-text').forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.2}s`;
+        });
     });
 
     watchButton.addEventListener('click', function() {
@@ -21,5 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     noButton.addEventListener('click', function() {
         options.classList.add('hidden');
         alert('Oke, mungkin lain kali!');
+    });
+
+    document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.2}s`;
     });
 });
