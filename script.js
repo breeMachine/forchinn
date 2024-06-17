@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const options = document.getElementById('options');
     const yesButton = document.getElementById('yesButton');
     const rawrButton = document.getElementById('rawrButton');
-    const imageContainer = document.getElementById('image');
-    const displayedImage = document.getElementById('displayedImage');
+    const story = document.getElementById('story');
+    const continueButton = document.getElementById('continueButton');
+    const narrative = document.getElementById('narrative');
+    const storyText = document.getElementById('storyText');
 
     mainContent.addEventListener('click', function() {
         mainContent.classList.add('hidden');
@@ -16,43 +18,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     rawrButton.addEventListener('click', function() {
         options.classList.add('hidden');
-        mainContent.innerHTML = `<h1 class="animated-text">Yaudin deh, aku mau kasih liat sesuatu ke kamu.</h1>
-            <button id="showImageButton" class="animated-text">Apa tuh?</button>`;
-        mainContent.classList.remove('hidden');
-        document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
+        story.innerHTML = `<h1 id="storyTitle" class="story-title animated-text">The Past, The Love, The Memories</h1>
+            <button id="continueButton" class="animated-text">Lanjut</button>`;
+        story.classList.remove('hidden');
+        document.querySelectorAll('#story .animated-text').forEach((element, index) => {
             element.style.animationDelay = `${index * 0.2}s`;
         });
     });
 
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id == 'showImageButton') {
-            mainContent.classList.add('hidden');
-            options.innerHTML = `<p class="animated-text">Tenang, ini foto bukan hal yang cabul kok. Mau lihat?</p>
-                <button id="yesImageButton" class="animated-text">Mauuu</button>
-                <button id="noImageButton" class="animated-text">Gak</button>`;
-            options.classList.remove('hidden');
-            document.querySelectorAll('#options .animated-text').forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.2}s`;
-            });
-        }
+    continueButton.addEventListener('click', function() {
+        story.classList.add('hidden');
+        narrative.innerHTML = `<p id="storyText" class="story-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac augue ac felis commodo convallis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin bibendum sapien ac sem venenatis, eget tristique tortor vestibulum. Suspendisse potenti. Quisque sit amet aliquet magna. In congue mauris non risus feugiat, at elementum sem scelerisque. Duis et pellentesque nisi. In eleifend lectus non magna ultricies, in consectetur ex lacinia. Vestibulum eleifend mi at efficitur iaculis. Ut a ex consequat, malesuada sem in, tempus mauris. Donec vel urna non dolor auctor congue. Nullam tincidunt, risus a vehicula elementum, nunc libero sodales sapien, sit amet semper est nunc at ligula. Ut vitae gravida dui.</p>`;
+        narrative.classList.remove('hidden');
+        animateStoryText();
     });
 
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id == 'yesImageButton') {
-            options.classList.add('hidden');
-            imageContainer.classList.remove('hidden');
-            displayedImage.src = "https://raw.githubusercontent.com/breeMachine/forchinn/main/Images/Picsart_24-05-13_17-25-58-870.jpg";
-        }
-        if (e.target && e.target.id == 'noImageButton') {
-            options.classList.add('hidden');
-            mainContent.innerHTML = `<h1 class="animated-text">Yah, mengsedih. Tapi tetap kupaksa kamu lihat hehe.</h1>`;
-            mainContent.classList.remove('hidden');
-            document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.2}s`;
-            });
-            imageContainer.classList.remove('hidden');
-            displayedImage.src = "https://raw.githubusercontent.com/breeMachine/forchinn/main/Images/Picsart_24-05-13_17-25-58-870.jpg";
-        }
-    });
+    function animateStoryText() {
+        const text = storyText.innerHTML.trim().split(" ");
+        storyText.innerHTML = "";
+        text.forEach((word, index) => {
+            setTimeout(() => {
+                storyText.innerHTML += word + " ";
+            }, index * 100);
+        });
+    }
 
 });
