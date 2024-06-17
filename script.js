@@ -3,15 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const options = document.getElementById('options');
     const yesButton = document.getElementById('yesButton');
     const rawrButton = document.getElementById('rawrButton');
-    const video = document.getElementById('video');
-    const youtubeVideo = document.getElementById('youtubeVideo');
-    const videoTitle = document.getElementById('videoTitle');
-
-    // Fungsi untuk menampilkan pesan error
-    function showError(message) {
-        console.error(message);
-        alert(message); // Ini contoh sederhana, bisa diganti dengan cara yang lebih elegan
-    }
+    const imageContainer = document.getElementById('image');
+    const displayedImage = document.getElementById('displayedImage');
 
     mainContent.addEventListener('click', function() {
         mainContent.classList.add('hidden');
@@ -24,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     rawrButton.addEventListener('click', function() {
         options.classList.add('hidden');
         mainContent.innerHTML = `<h1 class="animated-text">Yaudin deh, aku mau kasih liat sesuatu ke kamu.</h1>
-            <button id="watchButton" class="animated-text">Apa tuh?</button>`;
+            <button id="showImageButton" class="animated-text">Apa tuh?</button>`;
         mainContent.classList.remove('hidden');
         document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
             element.style.animationDelay = `${index * 0.2}s`;
@@ -32,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('click', function(e) {
-        if (e.target && e.target.id == 'watchButton') {
+        if (e.target && e.target.id == 'showImageButton') {
             mainContent.classList.add('hidden');
-            options.innerHTML = `<p class="animated-text">Tenang, bukan hal yang cabul kok. Mau liat gak?</p>
-                <button id="yesVideoButton" class="animated-text">Mauuu</button>
-                <button id="noVideoButton" class="animated-text">Gak</button>`;
+            options.innerHTML = `<p class="animated-text">Tenang, ini foto bukan hal yang cabul kok. Mau lihat?</p>
+                <button id="yesImageButton" class="animated-text">Mauuu</button>
+                <button id="noImageButton" class="animated-text">Gak</button>`;
             options.classList.remove('hidden');
             document.querySelectorAll('#options .animated-text').forEach((element, index) => {
                 element.style.animationDelay = `${index * 0.2}s`;
@@ -45,41 +38,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('click', function(e) {
-        if (e.target && e.target.id == 'yesVideoButton') {
+        if (e.target && e.target.id == 'yesImageButton') {
             options.classList.add('hidden');
-            video.classList.remove('hidden');
-            videoTitle.innerHTML = "Okeee ini dia.";
-            videoTitle.classList.add('animated-text');
-            // Mengatur video YouTube
-            const videoUrl = "https://www.youtube.com/embed/kovS1JTrOYQ";
-            if (youtubeVideo) {
-                youtubeVideo.src = videoUrl;
-                youtubeVideo.onerror = function() {
-                    showError("Gagal memuat video. Pastikan koneksi internet Anda stabil atau coba lagi nanti.");
-                };
-            } else {
-                showError("Elemen video tidak ditemukan.");
-            }
+            imageContainer.classList.remove('hidden');
+            displayedImage.src = "https://raw.githubusercontent.com/breeMachine/forchinn/main/Images/Picsart_24-05-13_17-25-58-870.jpg";
         }
-        if (e.target && e.target.id == 'noVideoButton') {
+        if (e.target && e.target.id == 'noImageButton') {
             options.classList.add('hidden');
-            mainContent.innerHTML = `<h1 class="animated-text">Yah, mengsedih. Tapi tetep kupaksa kamu liat hehe.</h1>`;
+            mainContent.innerHTML = `<h1 class="animated-text">Yah, mengsedih. Tapi tetap kupaksa kamu lihat hehe.</h1>`;
             mainContent.classList.remove('hidden');
             document.querySelectorAll('#main-content .animated-text').forEach((element, index) => {
                 element.style.animationDelay = `${index * 0.2}s`;
             });
-            video.classList.remove('hidden');
-            videoTitle.classList.add('animated-text');
-            // Mengatur video YouTube
-            const videoUrl = "https://www.youtube.com/embed/kovS1JTrOYQ";
-            if (youtubeVideo) {
-                youtubeVideo.src = videoUrl;
-                youtubeVideo.onerror = function() {
-                    showError("Gagal memuat video. Pastikan koneksi internet Anda stabil atau coba lagi nanti.");
-                };
-            } else {
-                showError("Elemen video tidak ditemukan.");
-            }
+            imageContainer.classList.remove('hidden');
+            displayedImage.src = "https://raw.githubusercontent.com/breeMachine/forchinn/main/Images/Picsart_24-05-13_17-25-58-870.jpg";
         }
     });
 
