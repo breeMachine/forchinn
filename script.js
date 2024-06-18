@@ -1,12 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('main-content');
     const options = document.getElementById('options');
-    const yesButton = document.getElementById('yesButton');
-    const rawrButton = document.getElementById('rawrButton');
-    const story = document.getElementById('story');
-    const continueButton = document.getElementById('continueButton');
-    const narrative = document.getElementById('narrative');
+    const reveal = document.getElementById('reveal');
+    const revealButton = document.getElementById('revealButton');
+    const question = document.getElementById('question');
+    const yesVideoButton = document.getElementById('yesVideoButton');
+    const noVideoButton = document.getElementById('noVideoButton');
+    const storyContainer = document.getElementById('story');
+    const storyTitle = document.getElementById('storyTitle');
     const storyText = document.getElementById('storyText');
+    const continueButton = document.getElementById('continueButton');
+    const audioContainer = document.getElementById('audio');
 
     mainContent.addEventListener('click', function() {
         mainContent.classList.add('hidden');
@@ -16,31 +20,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    rawrButton.addEventListener('click', function() {
-        options.classList.add('hidden');
-        story.innerHTML = `<h1 id="storyTitle" class="story-title animated-text">The Past, The Love, The Memories</h1>
-            <button id="continueButton" class="animated-text">Lanjut</button>`;
-        story.classList.remove('hidden');
-        document.querySelectorAll('#story .animated-text').forEach((element, index) => {
+    revealButton.addEventListener('click', function() {
+        reveal.classList.add('hidden');
+        question.classList.remove('hidden');
+        document.querySelectorAll('#question .animated-text').forEach((element, index) => {
             element.style.animationDelay = `${index * 0.2}s`;
         });
     });
 
-    continueButton.addEventListener('click', function() {
-        story.classList.add('hidden');
-        narrative.innerHTML = `<p id="storyText" class="story-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac augue ac felis commodo convallis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin bibendum sapien ac sem venenatis, eget tristique tortor vestibulum. Suspendisse potenti. Quisque sit amet aliquet magna. In congue mauris non risus feugiat, at elementum sem scelerisque. Duis et pellentesque nisi. In eleifend lectus non magna ultricies, in consectetur ex lacinia. Vestibulum eleifend mi at efficitur iaculis. Ut a ex consequat, malesuada sem in, tempus mauris. Donec vel urna non dolor auctor congue. Nullam tincidunt, risus a vehicula elementum, nunc libero sodales sapien, sit amet semper est nunc at ligula. Ut vitae gravida dui.</p>`;
-        narrative.classList.remove('hidden');
-        animateStoryText();
+    yesVideoButton.addEventListener('click', function() {
+        question.classList.add('hidden');
+        storyContainer.classList.remove('hidden');
+        storyTitle.classList.add('animated-text');
+        storyText.innerHTML = `Oke ini dia.<br><br>The Past, The Love, The Memories`;
+        storyText.classList.add('animated-text');
+        continueButton.classList.remove('hidden');
+        continueButton.classList.add('animated-text');
+
+        // Play audio
+        audioContainer.play();
     });
 
-    function animateStoryText() {
-        const text = storyText.innerHTML.trim().split(" ");
-        storyText.innerHTML = "";
-        text.forEach((word, index) => {
-            setTimeout(() => {
-                storyText.innerHTML += word + " ";
-            }, index * 100);
-        });
-    }
+    noVideoButton.addEventListener('click', function() {
+        question.classList.add('hidden');
+        storyContainer.classList.remove('hidden');
+        storyText.innerHTML = `Yah, mengsedih. Tapi aku tetap paksa kamu liat hehe.<br><br>The Past, The Love, The Memories`;
+        storyText.classList.add('animated-text');
+        continueButton.classList.remove('hidden');
+        continueButton.classList.add('animated-text');
+
+        // Play audio
+        audioContainer.play();
+    });
+
+    continueButton.addEventListener('click', function() {
+        storyContainer.classList.add('hidden');
+    });
 
 });
