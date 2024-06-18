@@ -9,36 +9,20 @@
 <body>
     <div id="main-content">
         <h1 class="animated-text">Halo, Chintya. Kalo kamu berhasil buka ini, keren juga ya.</h1>
-        <button id="yesButton" class="animated-text">Iyaaa</button>
-    </div>
-
-    <div id="options" class="hidden">
-        <p class="animated-text">Jangan jawab iyaaa doang dong</p>
         <button id="rawrButton" class="animated-text">Rawr</button>
     </div>
-
-    <div id="reveal" class="hidden">
-        <h1 id="revealTitle" class="animated-text">Yaudin deh, aku mau nunjukin sesuatu.</h1>
-        <button id="revealButton" class="animated-text">Apa?</button>
+    <div id="options" class="hidden">
+        <button id="showTextButton" class="animated-text">Apa?</button>
     </div>
-
-    <div id="question" class="hidden">
-        <p class="animated-text">Tenang, bukan hal yang cabul kok. Mau liat gak?</p>
-        <button id="yesVideoButton" class="animated-text">Mauuu</button>
-        <button id="noVideoButton" class="animated-text">Gak</button>
+    <div id="text" class="hidden">
+        <p id="textMessage" class="animated-text">Tenang, bukan hal yang cabul kok. Mau liat gak?</p>
+        <button id="yesTextButton" class="animated-text">Mauuu</button>
+        <button id="noTextButton" class="animated-text">Gak</button>
     </div>
-
     <div id="story" class="hidden">
-        <h1 id="storyTitle" class="animated-text">The Past, The Love, The Memories</h1>
-        <div id="storyText"></div>
-        <button id="continueButton" class="hidden">Lanjut</button>
+        <p id="storyText" class="animated-text">The Past, The Love, The Memories. Cerita panjang...</p>
     </div>
-
-    <audio id="audio" autoplay loop>
-        <source src="https://raw.githubusercontent.com/breeMachine/forchinn/main/Audio/A%20SKYLIT%20DRIVE%20-%20The%20Past_%20The%20Love_%20The%20Memory(MP3_160K).mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
+    <audio id="audio" src="https://raw.githubusercontent.com/breeMachine/forchinn/main/Audio/A%20SKYLIT%20DRIVE%20-%20The%20Past_%20The%20Love_%20The%20Memory(MP3_160K).mp3" preload="auto"></audio>
     <script src="script.js"></script>
 </body>
 </html>
