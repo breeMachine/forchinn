@@ -1,7 +1,8 @@
 body {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    background: linear-gradient(135deg, #f9d423, #ff4e50);
+    background: url('https://raw.githubusercontent.com/breeMachine/forchinn/main/Images/background.png') no-repeat center center fixed;
+    background-size: cover;
     color: #fff;
     margin: 0;
     padding: 0;
@@ -11,30 +12,38 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Layer hitam dengan opasitas 50% */
+    z-index: 0;
+}
+
+#main-content, #options, #show-something, #ask, #show-content, #story-intro, #story {
+    position: relative;
+    z-index: 1;
 }
 
 .hidden {
     display: none;
 }
 
-button {
-    padding: 12px 24px;
-    margin: 10px;
-    font-size: 16px;
+p, h1 {
+    font-size: 24px;
     font-weight: bold;
-    background-color: #ff6f61;
-    border: none;
+    font-family: 'Montserrat', sans-serif;
     color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Stroke hitam */
 }
 
-button:hover {
-    background-color: #ff4e50;
-}
-
-.animated-text {
+.animated-text, .animated-button {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s forwards;
@@ -45,4 +54,65 @@ button:hover {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes enlargeAndShrink {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToTop {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-50vh); /* Mengubah nilai dari -80vh ke -50vh */
+        opacity: 1;
+    }
+}
+
+#thePastText.enlarge-and-shrink {
+    animation: enlargeAndShrink 5s forwards;
+}
+
+.the-past-text {
+    text-shadow: 2px 2px 4px #000; /* Stroke hitam */
+}
+
+.story-text {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.story-text.visible {
+    opacity: 1;
+}
+
+/* Gaya untuk tombol */
+.animated-button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 20px; /* Ukuran font tombol */
+    font-weight: bold;
+    background-color: #8b0000; /* Warna merah gelap untuk tombol */
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.animated-button:hover {
+    background-color: #b22222; /* Warna merah sedikit lebih terang saat hover */
 }
