@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const yesTextButton = document.getElementById('yesTextButton');
     const noTextButton = document.getElementById('noTextButton');
     const continueButton = document.getElementById('continueButton');
+    const continueStoryButton = document.getElementById('continueStoryButton');
     const thePastText = document.getElementById('thePastText');
     const storyText = document.querySelector('.story-text');
 
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('#show-content .animated-text, #show-content .animated-button').forEach((element, index) => {
             element.style.animationDelay = `${index * 0.2}s`;
         });
+        continueButton.classList.remove('hidden'); // Tampilkan tombol "Lanjut"
     });
 
     noTextButton.addEventListener('click', function() {
@@ -57,17 +59,19 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('#show-content .animated-text, #show-content .animated-button').forEach((element, index) => {
             element.style.animationDelay = `${index * 0.2}s`;
         });
+        continueButton.classList.remove('hidden'); // Tampilkan tombol "Lanjut"
     });
 
     continueButton.addEventListener('click', function() {
         showContent.classList.add('hidden');
         storyIntro.classList.remove('hidden');
         thePastText.classList.add('enlarge-and-shrink');
+
         setTimeout(function() {
-            continueButton.classList.remove('hidden');
+            continueStoryButton.classList.remove('hidden');
         }, 5000); // Menampilkan tombol "Lanjut" setelah 5 detik
 
-        continueButton.addEventListener('click', function() {
+        continueStoryButton.addEventListener('click', function() {
             storyIntro.classList.add('hidden');
             storyText.classList.add('visible');
             story.classList.remove('hidden');
@@ -85,12 +89,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 storyText.classList.add('visible');
             }, 500); // Delay 0.5 detik sebelum memunculkan teks cerita
         }, { once: true });
-        
+
         audio.play();
     });
 
     // Play audio on page load
     window.addEventListener('load', function() {
         audio.play();
+    });
+
+    // Tampilkan tombol "Lanjut" setelah animasi teks "Okeh, ini dia." selesai
+    showContent.addEventListener('animationend', function() {
+        continueButton.classList.remove('hidden');
     });
 });
